@@ -18,9 +18,18 @@ namespace webappsql
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+            .ConfigureWebHostDefaults(webBuilder =>
+                webBuilder.ConfigureAppConfiguration(config =>
                 {
-                    webBuilder.UseStartup<Startup>();
-                });
+                    config.Build();
+                    config.AddAzureAppConfiguration("Endpoint=https://appconfigdemo100.azconfig.io;Id=zkN1-lh-s0:Cf0ZnASkcIIyS2W5oNDD;Secret=pfvYAcNA8kDOXl0KsW+OanAsnTqKlNK7COqwhbSix80=");
+                    //webBuilder.UseStartup<Startup>();
+                })
+                .UseStartup<Startup>());
+        //            .ConfigureWebHostDefaults(webBuilder =>
+        //            {
+        //                webBuilder.UseStartup<Startup>();
+        //            });
+        //}
     }
 }

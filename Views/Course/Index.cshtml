@@ -1,10 +1,14 @@
 ﻿@model IEnumerable<webappsql.Models.Course>
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
 
 @{
     ViewData["Title"] = "View";
 }
 
 <h1>List of Courses from Github without Azure SQL database</h1>
+<h2>The name of the database is : <b>@Configuration["demoapp:Settings:dbname"]</b></h2>
 
 <p>
 </p>
