@@ -31,27 +31,43 @@ namespace webappsql.Services
 
         public IEnumerable<Course> GetCourses(string connectionString)
         {
-            List<Course> _list = new List<Course>();
-            string _statement = "select ID, [Name], Rating from Course";
-            SqlConnection connection = GetConnection(connectionString);
 
-            connection.Open();
-            SqlCommand sqlCommand = new SqlCommand(_statement, connection);
-            using(SqlDataReader dataReader = sqlCommand.ExecuteReader())
+            List<Course> _list = new List<Course>();
+            Course _course = new Course
             {
-                while (dataReader.Read())
-                {
-                    Course _course = new Course
-                    {
-                        Id = dataReader.GetInt32(0),
-                        Name = dataReader.GetString(1),
-                        Rating = dataReader.GetDecimal(2)
-                    };
-                    
-                    _list.Add(_course);
-                }
-            }
-            connection.Close();
+                Id = 1,
+                Name = "204",
+                Rating = 4
+            };
+            Course _course1 = new Course
+            {
+                Id = 2,
+                Name = "3.5",
+                Rating = 3
+            };
+            _list.Add(_course);
+            _list.Add(_course1);
+            //string _statement = "select ID, [Name], Rating from Course";
+            //SqlConnection connection = GetConnection(connectionString);
+
+            //connection.Open();
+            //SqlCommand sqlCommand = new SqlCommand(_statement, connection);
+            //using(SqlDataReader dataReader = sqlCommand.ExecuteReader())
+            //{
+            //    while (dataReader.Read())
+            //    {
+            //        Course _course = new Course
+            //        {
+            //            Id = dataReader.GetInt32(0),
+            //            Name = dataReader.GetString(1),
+            //            Rating = dataReader.GetDecimal(2)
+            //        };
+
+            //        _list.Add(_course);
+            //    }
+            //}
+            //connection.Close();
+
             return _list;
         }
     }
